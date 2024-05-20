@@ -6,7 +6,7 @@ import 'package:todoey_flutter/models/task_data.dart';
 class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  late  String newTaskTitle;
+    late String newTaskTitle;
 
     return Container(
       color: Color(0xff757575),
@@ -35,6 +35,7 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               onChanged: (newText) {
                 newTaskTitle = newText;
+                print("Task title: " + newTaskTitle);
               },
             ),
             TextButton(
@@ -49,7 +50,8 @@ class AddTaskScreen extends StatelessWidget {
                       MaterialStatePropertyAll(Colors.lightBlueAccent)),
               // color: Colors.lightBlueAccent,
               onPressed: () {
-                Provider.of<TaskData>(context).addTask(newTaskTitle);
+                Provider.of<TaskData>(context, listen: false)
+                    .addTask(newTaskTitle);
                 Navigator.pop(context);
               },
             ),
